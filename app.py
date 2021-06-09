@@ -35,10 +35,11 @@ with dataset:
     r=requests.get(main_url)
     data=r.json()
     #data
-    aqi= data['aqi']
-    iaqi = data['iaqi']
+    d1=data['data']
+    aqi=d1['aqi']
+    iaqi=d1['iaqi']
     for i in iaqi.items():
-        print(i[0],":",i[1]['v'])
+        st.write(i[0], ":", i[1]["v"])
 
 
 
@@ -46,8 +47,39 @@ with features:
       st.header(" The features created ")
       st.markdown("first feature")
       st.markdown("second feature")
+      dew =iaqi.get('dew', 'Nil')
+      dew =iaqi.get('dew', 'Nil')
+      no2 =iaqi.get('no2', 'Nil')
+      o3 =iaqi.get('o3', 'Nil')
+      so2 =iaqi.get('so2', 'Nil')
+      pm10 =iaqi.get('pm10', 'Nil')
+      pm25 =iaqi.get('pm25', 'Nil')
+
+      print(f'(city) AQI :',aqi, '\n')
+      print('Individual Air Quality')
+      print("Dew :", dew)
+      print("no2 :", no2)
+      print("o3 :", o3)
+      print("so2 :", so2)
+      print("pm10 :", pm10)
+      print("pm25 :", pm25)
 
 
+      import matplotlib.pyplot as plt
+      import matplotlib.pyplot as plt
+      pollutants =[i for i in iaqi]
+      values = [i ['v'] for i in iaqi.values()]
+
+      print(pollutants)
+      print(values)
+
+      explode= [0 for i in pollutants]
+      mx = values.index(max(values))
+      explode[mx] = 0.1
+      plt.figure(figsize=(8,6))
+
+      plt.pie(values, labels= pollutants, autopct="%1.1f%%",shadow=True)
+      plt.show()
 
 
 
