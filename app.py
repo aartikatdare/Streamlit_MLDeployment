@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import time
 import requests
-from bs4 import BeautifulSoup
+
 
 import sys
 
